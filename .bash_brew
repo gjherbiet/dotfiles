@@ -1,0 +1,57 @@
+[ -e /usr/local/bin/brew ] || return;
+
+#-----------------------------------------------------------------------------
+# Add Homebrew elements to the path
+#
+export PATH=$(brew --prefix)/bin:$PATH
+export MANPATH=$(brew --prefix)/shar/man:$MANPATH
+[ -d /usr/local/sbin ] && export PATH=$PATH:/usr/local/sbin
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Special coreutils configuration
+#
+if [ -d $(brew --prefix coreutils) ]; then 
+	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+	MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+	. $HOME/.bash_linux
+fi
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Enable additional brew commands
+#
+BREW_CONTRIB_PATH=$(brew --prefix)/Library/Contributions/examples
+[ -d $BREW_CONTRIB_PATH ] && export PATH=$PATH:$BREW_CONTRIB_PATH
+[ -d $(brew --prefix)/lib/python2.7/site-packages ] && \
+	export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Auto-completion
+[ -e /usr/local/bin/brew ] && [ -r /usr/local/etc/bash_completion ] && \
+	. /usr/local/etc/bash_completion && \
+	. /usr/local/Library/Contributions/brew_bash_completion.sh
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Homebrew - Ruby integration
+#
+# Add gems from Homebrew's ruby to the path
+HOMEBREW_RUBY_PATH=$(brew --prefix ruby)/bin
+[ -d $HOMEBREW_RUBY_PATH ] && export PATH=$PATH:$HOMEBREW_RUBY_PATH
+if which rbenv > /dev/null; then
+	eval "$(rbenv init -)"
+	export RBENV_ROOT=/usr/local/opt/rbenv
+fi
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Autojump
+#
+if which autojump &> /dev/null; then
+	export AUTOJUMP_KEEP_SYMLINKS=1
+	export AUTOJUMP_IGNORE_CASE=1
+	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+fi
+#-----------------------------------------------------------------------------

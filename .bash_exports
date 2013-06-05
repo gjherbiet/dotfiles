@@ -1,0 +1,62 @@
+#-----------------------------------------------------------------------------
+# Path
+#
+[ -d /usr/local/share/python ] && export PATH=$PATH:/usr/local/share/python
+[ -d /opt/X11/bin ] && export PATH=/opt/X11/bin:$PATH
+[ -d $HOME/bin ] && export PATH=$PATH:$HOME/bin
+[ -d $HOME/Library/Scripts ] && export PATH=$PATH:$HOME/Library/Scripts
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Editor
+#
+which vim > /dev/null && export EDITOR='vim'
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# History
+#
+
+# Larger bash history (allow 32^3 entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+
+# Make some commands not show up in history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Colors
+#
+# http://geoff.greer.fm/lscolors/
+# http://plug-and-pray.blogspot.com/2008/02/lscolors.html
+
+if [ -x /usr/bin/dircolors ]; then
+    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+export LSCOLORS=ExFxcxGxbxegedabafaEae
+export LS_COLORS="di=1;34:ln=1;35:so=32;40:pi=1;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;45:tw=0;:ow=0;44:$LS_COLORS"
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Prefer US English and use UTF-8
+#
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Don’t clear the screen after quitting a manual page
+#
+export MANPAGER="less -X"
+#-----------------------------------------------------------------------------
+
+# Always enable colored `grep` output
+export GREP_OPTIONS="--color=auto"
+
+#-----------------------------------------------------------------------------
+# Misc. variables
+#
+export KERNEL=$(/usr/bin/uname -s)
+#-----------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+__git_ps1 > /dev/null || function __git_ps1 { echo -n ""; }
+which git > /dev/null || return;
+
+#-----------------------------------------------------------------------------
+# GIT status in prompt
+#
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWSTASHSTATE=1
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Git related aliases
+#
+[ -z "$GIT_EDITOR" ] && export GIT_EDITOR='vim'
+
+# Git achievements
+GIT_ACHIEVEMENTS_PATH="$HOME"/Development/git-achievements
+if [ -d "$GIT_ACHIEVEMENTS_PATH" ]; then
+	export PATH=$PATH:$GIT_ACHIEVEMENTS_PATH
+	alias git='git-achievements'
+fi
+
+# git + hub = github !
+which hub > /dev/null && alias git='hub'
+#-----------------------------------------------------------------------------

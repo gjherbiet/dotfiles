@@ -59,7 +59,6 @@ alias redo='sudo \!-1'
 #-----------------------------------------------------------------------------
 # Network-related shortcuts
 #
-alias ping="ping -c 5"
 alias gping='ping www.google.fr'
 
 alias localip="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
@@ -141,9 +140,8 @@ if [ -f /usr/local/lib/plantuml.jar ]; then
 fi
 
 # Screen and serial console
-if which screen > /dev/null && test -e /dev/tty.usbserial; then
-	alias screen9600='screen /dev/tty.usbserial 9600'
-	alias screen115200='screen /dev/tty.usbserial 115200'
+if which screen > /dev/null; then
+	alias console='screen /dev/tty.usbserial'
 fi
 #-----------------------------------------------------------------------------
 

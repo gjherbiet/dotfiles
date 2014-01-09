@@ -67,6 +67,8 @@ alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias randmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 
 alias whois="whois -h whois-servers.net"
+
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
@@ -108,6 +110,17 @@ alias nowdate='date "+%F"'
 # Usage: sleep 10; alert
 which notify-send > /dev/null && 
 	alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Generate random passwords
+function genpasswd () {
+	if [ -z $1 ]; then pwlength=14; else pwlength=$1; fi
+	if [ -z $2 ]; then pwnb=1; else pwnb=$2; fi
+	for i in `seq 1 $pwnb`; do
+		tr -dc "A-Za-z0-9_&@#()[]{}+-=/\\\|.\!?,;*@#&$%<>" < /dev/urandom | head -c "$pwlength" | xargs
+	done
+}
+
+
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------

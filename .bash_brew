@@ -14,7 +14,6 @@ export MANPATH=$(brew --prefix)/shar/man:$MANPATH
 if [ -d $(brew --prefix coreutils) ]; then 
 	PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 	MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-	. $HOME/.bash_linux
 fi
 #-----------------------------------------------------------------------------
 

@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------
 # Add Homebrew elements to the path
 #
-export PATH=$(brew --prefix)/bin:$PATH
-export MANPATH=$(brew --prefix)/shar/man:$MANPATH
+export PATH=$(/usr/local/bin/brew --prefix)/bin:$PATH
+export MANPATH=$(/usr/local/bin/brew --prefix)/shar/man:$MANPATH
 [ -d /usr/local/sbin ] && export PATH=$PATH:/usr/local/sbin
 #-----------------------------------------------------------------------------
 

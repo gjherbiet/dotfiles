@@ -56,7 +56,7 @@ function __remote_host { if [ -n "$SSH_CLIENT" ]; then echo -ne "@"`hostname -s`
 if which perl >/dev/null && which sed >/dev/null; then
 	function __trim_path {
 		echo -n `pwd | sed "s:$HOME:~:g" | \
-			perl -F/ -ane '(length > 15) ? print join( "/", map { ($i++ < @F - 1 && length $_ > 3) ? /^\./ ? substr $_,0,2 : substr $_,0,1 : $_ } @F) : print join("/", @F)'`;
+			perl -F/ -ane '(length > 35) ? print join( "/", map { ($i++ < @F - 1 && length $_ > 3) ? /^\./ ? substr $_,0,2 : substr $_,0,1 : $_ } @F) : print join("/", @F)'`;
 	}
 else
 	function __trim_path { echo -n `pwd | sed "s:$HOME:~:g"`; }

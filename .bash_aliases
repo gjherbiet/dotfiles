@@ -71,7 +71,6 @@ alias whois="whois -h whois-servers.net"
 if which speedtest_cli > /dev/null; then
 	alias speedtest="speedtest_cli  --share"
 	alias speedtest_post="speedtest --server 1360"
-	alias speedtest_post="speedtest --server 1360"
 else
 	alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 fi

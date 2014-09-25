@@ -34,11 +34,19 @@ BREW_CONTRIB_PATH=$(brew --prefix)/Library/Contributions/examples
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
+# Homebrew - PHP 5.4 integration
+#
+# Switch to new PHP version in the command line
+HOMEBREW_PHP45_PATH=$(brew --prefix homebrew/php/php54)/bin
+[ -d $HOMEBREW_PHP45_PATH ] && export PATH=$HOMEBREW_PHP45_PATH:$PATH
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
 # Homebrew - Ruby integration
 #
 # Add gems from Homebrew's ruby to the path
 HOMEBREW_RUBY_PATH=$(brew --prefix ruby)/bin
-[ -d $HOMEBREW_RUBY_PATH ] && export PATH=$PATH:$HOMEBREW_RUBY_PATH
+[ -d $HOMEBREW_RUBY_PATH ] && export PATH=$HOMEBREW_RUBY_PATH:$PATH
 if which rbenv > /dev/null; then
 	eval "$(rbenv init -)"
 	export RBENV_ROOT=/usr/local/opt/rbenv

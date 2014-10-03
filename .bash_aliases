@@ -68,7 +68,9 @@ function mtu {
 	ping -D -s ${1:-1472} ${2:-8.8.8.8}
 }
 
-alias randmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
+function randmac {
+	printf '%02x' $((0x$(od /dev/urandom -N1 -t x1 -An | cut -c 2-) & 0xFE | 0x02)); od /dev/urandom -N5 -t x1 -An | sed 's/ /:/g'
+}
 
 if which speedtest_cli > /dev/null; then
 	alias speedtest="speedtest_cli  --share"

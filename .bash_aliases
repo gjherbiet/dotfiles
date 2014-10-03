@@ -70,8 +70,6 @@ function mtu {
 
 alias randmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 
-alias whois="whois -h whois-servers.net"
-
 if which speedtest_cli > /dev/null; then
 	alias speedtest="speedtest_cli  --share"
 	alias speedtest_post="speedtest --server 1360"

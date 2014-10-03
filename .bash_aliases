@@ -64,6 +64,10 @@ alias gping='ping www.google.fr'
 alias localip="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+function mtu {
+	ping -D -s ${1:-1472} ${2:-8.8.8.8}
+}
+
 alias randmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 
 alias whois="whois -h whois-servers.net"

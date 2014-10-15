@@ -137,11 +137,18 @@ function genpasswd () {
 #
 which gnuplot > /dev/null && alias plot='gnuplot' && alias gp='gnuplot'
 
-# Wireshark over SSH
+# Wireshark
 if which wireshark > /dev/null; then
 	function wireshark-ssh () {
 		ssh $@ tcpdump -U -s0 -w - 'not port 22' | wireshark -k -i -
 	}
+	if [ -x /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer ]; then
+		function wireshark-vmware () {
+			rm -f /tmp/vmnet-sniffer && mkfifo /tmp/vmnet-sniffer && \
+				sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -w /tmp/vmnet-sniffer ${1:-vmnet8} > /dev/null && \
+				wireshark -k -i /tmp/vmnet-sniffer &
+		}
+	fi
 fi
 
 # Xfig: use special LaTeX fonts for easy pdf_t export

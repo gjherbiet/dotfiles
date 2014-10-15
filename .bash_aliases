@@ -122,10 +122,8 @@ which notify-send > /dev/null &&
 
 # Generate random passwords
 function genpasswd () {
-	if [ -z $1 ]; then pwlength=14; else pwlength=$1; fi
-	if [ -z $2 ]; then pwnb=1; else pwnb=$2; fi
-	for i in `seq 1 $pwnb`; do
-		tr -dc "A-Za-z0-9_&@#()[]{}+-=/\\\|.\!?,;*@#&$%<>" < /dev/urandom | head -c "$pwlength" | xargs
+	for i in `seq 1 ${2:-1}`; do
+		tr -dc "A-Za-z0-9_&@#()[]{}+-=/\\\|.\!?,;*@#&$%<>" < /dev/urandom | head -c "${1:-14}" | xargs
 	done
 }
 

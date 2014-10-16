@@ -143,8 +143,8 @@ if which wireshark > /dev/null; then
 	if [ -x /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer ]; then
 		function wireshark-vmware () {
 			rm -f /tmp/vmnet-sniffer && mkfifo /tmp/vmnet-sniffer && \
-				sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -w /tmp/vmnet-sniffer ${1:-vmnet8} > /dev/null && \
-				wireshark -k -i /tmp/vmnet-sniffer &
+				sudo -b /Applications/VMware\ Fusion.app/Contents/Library/vmnet-sniffer -w /tmp/vmnet-sniffer ${1:-vmnet8} > /dev/null && \
+				wireshark -k -i /tmp/vmnet-sniffer
 		}
 	fi
 fi

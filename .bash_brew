@@ -34,11 +34,12 @@ BREW_CONTRIB_PATH=$(brew --prefix)/Library/Contributions/examples
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
-# Homebrew - PHP 5.4 integration
+# Homebrew - PHP integration
 #
 # Switch to new PHP version in the command line
-HOMEBREW_PHP45_PATH=$(brew --prefix homebrew/php/php54)/bin
-[ -d $HOMEBREW_PHP45_PATH ] && export PATH=$HOMEBREW_PHP45_PATH:$PATH
+HOMEBREW_PHP_VERSION="56"
+HOMEBREW_PHP_PATH=$(brew --prefix homebrew/php/php$HOMEBREW_PHP_VERSION)/bin
+[ -d $HOMEBREW_PHP_PATH ] && export PATH=$HOMEBREW_PHP_PATH:$PATH
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
